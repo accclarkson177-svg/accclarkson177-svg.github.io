@@ -73,12 +73,14 @@ import Layout from '../layouts/Layout.astro';
 
       <!-- 2.5 各种导航 -->
       <div class="glass-panel hover:shadow-[0_0_20px_rgba(168,85,247,0.2)]">
-        <h2 class="text-purple-400 font-bold mb-4">AI Tank</h2>
+        <h2 class="text-purple-400 font-bold mb-4">Navigation</h2>
         <div class="grid grid-cols-2 gap-2 text-xs text-center font-mono">
           <a href="https://aixiaobo.cn/" target="_blank" class="bg-slate-800/50 p-2 rounded border border-slate-700 hover:border-purple-400 transition-colors cursor-pointer block text-slate-200">AI订阅FAQ</a>
           <a href="https://zjuers.com/" target="_blank" class="bg-slate-800/50 p-2 rounded border border-slate-700 hover:border-purple-400 transition-colors cursor-pointer block text-slate-200">ZJU导航</a>
           <a href="https://zjuers.com/mc.html" target="_blank" class="bg-slate-800/50 p-2 rounded border border-slate-700 hover:border-purple-400 transition-colors cursor-pointer block text-slate-200">百万立方导航</a>
-          
+          <a href="https://github.com/" target="_blank" class="bg-slate-800/50 p-2 rounded border border-slate-700 hover:border-purple-400 transition-colors cursor-pointer block text-slate-200">Github</a>
+          <a href="https://tools.rosetears.cn/" target="_blank" class="bg-slate-800/50 p-2 rounded border border-slate-700 hover:border-purple-400 transition-colors cursor-pointer block text-slate-200">导航1</a>
+          <a href="https://tool.liumingye.cn/" target="_blank" class="bg-slate-800/50 p-2 rounded border border-slate-700 hover:border-purple-400 transition-colors cursor-pointer block text-slate-200">导航2</a>
           </div>
       </div>
       
@@ -89,7 +91,7 @@ import Layout from '../layouts/Layout.astro';
     <!-- 功能：个人整理的核心输出区、最新日志瀑布流展示 -->
     <!-- ---------------------------------------- -->
     <section class="md:col-span-6 flex flex-col gap-6">
-      <div class="glass-panel h-full border-t-4 border-t-cyan-500">
+      <div class="glass-panel h-fit border-t-4 border-t-cyan-500">
         <h1 class="text-2xl font-bold mb-6 text-white tracking-wide">Ac's Workflow & Life Log</h1>
         
         <!-- ========================================== -->
@@ -103,8 +105,22 @@ import Layout from '../layouts/Layout.astro';
           <!-- 工具 2 -->
           <a href="https://www.icloud.com.cn/calendar/" target="_blank" class="bg-slate-800/50 px-4 py-2 rounded border border-slate-700 hover:border-cyan-400 hover:text-cyan-300 hover:shadow-[0_0_10px_rgba(6,182,212,0.3)] transition-all cursor-pointer text-xs font-mono text-slate-200 flex items-center gap-1">
             📥 日历与日程
+
+          <!-- 工具 3 -->
+          <a href="https://www.luogu.com.cn/" target="_blank" class="bg-slate-800/50 px-4 py-2 rounded border border-slate-700 hover:border-cyan-400 hover:text-cyan-300 hover:shadow-[0_0_10px_rgba(6,182,212,0.3)] transition-all cursor-pointer text-xs font-mono text-slate-200 flex items-center gap-1">
+            洛谷
+          </a>
+          </a>
+          <!-- 工具 4 -->
+          <a href="https://mail.google.com/mail/u/0/#inbox" target="_blank" class="bg-slate-800/50 px-4 py-2 rounded border border-slate-700 hover:border-cyan-400 hover:text-cyan-300 hover:shadow-[0_0_10px_rgba(6,182,212,0.3)] transition-all cursor-pointer text-xs font-mono text-slate-200 flex items-center gap-1">
+            Gmail
+          </a>
+          <!-- 工具 5 -->
+          <a href="https://wx.mail.qq.com/" target="_blank" class="bg-slate-800/50 px-4 py-2 rounded border border-slate-700 hover:border-cyan-400 hover:text-cyan-300 hover:shadow-[0_0_10px_rgba(6,182,212,0.3)] transition-all cursor-pointer text-xs font-mono text-slate-200 flex items-center gap-1">
+            QQ mail
           </a>
         </div>
+
 
         <!-- ⚡ PDF 核心调取控制台 (对接 LaTeX 自动化流) -->
         <div class="mb-8 p-4 bg-red-600/5 border border-red-500/20 rounded-xl flex items-center justify-between">
@@ -117,21 +133,35 @@ import Layout from '../layouts/Layout.astro';
           </a>
         </div>
         
-        <!-- 日志卡片容器 -->
-        <div class="space-y-4">
-          <!-- 单个日志卡片 (系统重构) -->
-          <div class="block bg-slate-900/50 p-4 rounded-lg border border-slate-700">
-            <div class="flex justify-between items-center mb-2">
-              <span class="text-xs font-mono bg-cyan-900/50 text-cyan-300 px-2 py-1 rounded">2026.04.10</span>
-              <span class="text-xs text-slate-400">#系统重构</span>
-            </div>
-            <h3 class="font-bold text-lg mb-1">从 LaTeX 到数字光之国的跃迁</h3>
-            <p class="text-sm text-slate-400">成功建立自动化搬运流水线，将重度编辑与轻量展示分离...</p>
-          </div>
-          <!-- 未来可以在这里继续叠加更多日志卡片 -->
-        </div>
+        
 
-      </div>
+        <!-- === 日志模块暂时封存备用 开始 === -->
+        <!-- 
+        <div class="bg-slate-800/40 rounded-xl p-5 border border-slate-700/50 ...">
+            <div class="flex justify-between items-center mb-3">
+                <span class="px-2 py-1 bg-teal-500/20 text-teal-300 text-xs rounded-md">2026.04.10</span>
+                <span class="text-slate-400 text-sm">#系统重构</span>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">从 LaTeX 到数字光之国的跃迁</h3>
+            <p class="text-slate-400 text-sm leading-relaxed">成功建立自动化搬运流水线，将重度编辑与轻量展示分离...</p>
+        </div> 
+        -->
+<!-- === 日志模块暂时封存备用 结束 === -->
+
+<!-- 👇 下面是中央区块结束的 </div> 👇 -->
+     </div>
+          <!-- role model-->
+          <div class="glass-panel hover:shadow-[0_0_20px_rgba(168,85,247,0.2)]">
+            <h2 class="text-purple-400 font-bold mb-4">Role Model</h2>
+            <div class="grid grid-cols-5 gap-2 text-xs text-center font-mono">
+              <a href="https://note.tonycrane.cc/" target="_blank" class="bg-slate-800/50 p-2 rounded border border-slate-700 hover:border-purple-400 transition-colors cursor-pointer block text-slate-200">Rolemodel1</a>
+              <a href="https://note.isshikih.top/cour_note/" target="_blank" class="bg-slate-800/50 p-2 rounded border border-slate-700 hover:border-purple-400 transition-colors cursor-pointer block text-slate-200">Rolemodel2</a>
+              <a href="https://webvpn.zju.edu.cn/https/77726476706e69737468656265737421f3e540863e23785f6a1c8ca89c5a3530c09012b53c383aa60352/projects/" target="_blank" class="bg-slate-800/50 p-2 rounded border border-slate-700 hover:border-purple-400 transition-colors cursor-pointer block text-slate-200">Rolemodel3</a>
+              </div>
+          </div>
+
+
+
     </section>
 
     <!-- ---------------------------------------- -->
@@ -149,6 +179,19 @@ import Layout from '../layouts/Layout.astro';
         <div class="bg-slate-900/80 p-3 rounded text-sm text-slate-300 border border-red-900/50">
           <p class="font-bold mb-1">收藏夹清理协议</p>
           <p class="text-xs text-slate-400">每周日 21:00 执行，不得违约。</p>
+        </div>
+      </div>
+
+      <!-- 4.2 大脑游戏 -->
+      <div class="glass-panel hover:shadow-[0_0_20px_rgba(168,85,247,0.2)]">
+        <h2 class="text-purple-400 font-bold mb-4">Brainer</h2>
+        <div class="grid grid-cols-2 gap-2 text-xs text-center font-mono">
+          <a href="https://www.arealme.com/cn#google_vignette" target="_blank" class="bg-slate-800/50 p-2 rounded border border-slate-700 hover:border-purple-400 transition-colors cursor-pointer block text-slate-200">Realme</a>
+          <a href="https://www.tooljson.com/shuerte" target="_blank" class="bg-slate-800/50 p-2 rounded border border-slate-700 hover:border-purple-400 transition-colors cursor-pointer block text-slate-200">Schurt 1</a>
+          <a href="https://schulte.top/zh-CN/" target="_blank" class="bg-slate-800/50 p-2 rounded border border-slate-700 hover:border-purple-400 transition-colors cursor-pointer block text-slate-200">Schurt 2</a>
+          <a href="https://www.arealme.com/reaction-test/cn/" target="_blank" class="bg-slate-800/50 p-2 rounded border border-slate-700 hover:border-purple-400 transition-colors cursor-pointer block text-slate-200">Reaction</a>
+          <a href="https://dt1.shindans.com/" target="_blank" class="bg-slate-800/50 p-2 rounded border border-slate-700 hover:border-purple-400 transition-colors cursor-pointer block text-slate-200">Mobile sight</a>
+          <a href="=https://dt3.shindans.com/" target="_blank" class="bg-slate-800/50 p-2 rounded border border-slate-700 hover:border-purple-400 transition-colors cursor-pointer block text-slate-200">Caculator</a>
         </div>
       </div>
       
