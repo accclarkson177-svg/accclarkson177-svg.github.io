@@ -1,53 +1,149 @@
 ---
+// 【核心控制台 / Frontmatter】
+// 这里用于引入外部组件（如 Layout）或者编写未来需要的 JS 获取数据的逻辑
 import Layout from '../layouts/Layout.astro';
 ---
+
 <Layout title="Ac's Nexus | 光之国数字枢纽">
+
+  <!-- ========================================== -->
+  <!-- 模块 1：等离子火花引擎 (全局顶部导航栏 / Omni-Bar) -->
+  <!-- 功能：放置彩色计时器、全局搜索入口、状态栏 -->
+  <!-- ========================================== -->
   <header class="glass-panel flex items-center justify-between mb-8 sticky top-4 z-50">
     <div class="flex items-center gap-4 w-full max-w-2xl">
+      <!-- 彩色计时器 (呼吸灯指示当前状态) -->
       <div class="w-4 h-4 rounded-full timer-safe border border-white/50"></div>
+      <!-- 泽塔终端唤醒 / 搜索输入框 -->
       <input type="text" placeholder="/检索日志... 唤醒泽塔终端" class="bg-transparent border-none outline-none text-xl w-full text-cyan-50 placeholder-slate-500 font-mono"/>
     </div>
   </header>
+
+  <!-- ========================================== -->
+  <!-- 主体战阵：Bento Box 便当盒网格 (12列响应式布局) -->
+  <!-- 结构：左侧(3列) + 中央(6列) + 右侧(3列) -->
+  <!-- ========================================== -->
   <main class="grid grid-cols-1 md:grid-cols-12 gap-6">
+
+    <!-- ---------------------------------------- -->
+    <!-- 模块 2：左侧跃迁锚点 (侧边栏，占 3/12 列) -->
+    <!-- 功能：高频使用的外部学术链接、基建工具、AI 兵器库 -->
+    <!-- ---------------------------------------- -->
     <aside class="md:col-span-3 flex flex-col gap-6">
+      
+      <!-- 2.1 学术与基建模块 (ZJU & Tools) -->
       <div class="glass-panel hover:shadow-[0_0_20px_rgba(6,182,212,0.2)]">
-        <h2 class="text-cyan-400 font-bold mb-4">ZJU & Tools</h2>
+        <h2 class="text-cyan-400 font-bold mb-4">ZJU</h2>
         <ul class="space-y-3 font-mono text-sm">
-          <li><a href="#" class="hover:text-cyan-300 transition-colors">▶ 学在浙大 (ZJU)</a></li>
-          <li><a href="#" class="hover:text-cyan-300 transition-colors">▶ GitHub / VSCode</a></li>
+          <li><a href="https://course.zju.edu.cn/" target="_blank" class="hover:text-cyan-300 transition-colors block">▶ 学在浙大 (ZJU)</a></li>
+          <li><a href="https://chalaoshi.netlify.app/" target="_blank" class="hover:text-cyan-300 transition-colors block">▶ 查老师</a></li>
         </ul>
       </div>
+
+      <!-- 2.2 外挂 AI 兵器库 (AI Arsenal) -->
       <div class="glass-panel hover:shadow-[0_0_20px_rgba(168,85,247,0.2)]">
-        <h2 class="text-purple-400 font-bold mb-4">AI Arsenal</h2>
+        <h2 class="text-purple-400 font-bold mb-4">AI Copilot</h2>
         <div class="grid grid-cols-2 gap-2 text-xs text-center font-mono">
-          <div class="bg-slate-800/50 p-2 rounded border border-slate-700 cursor-pointer">Claude</div>
-          <div class="bg-slate-800/50 p-2 rounded border border-slate-700 cursor-pointer">Gemini</div>
+          <a href="https://gemini.google.com/" target="_blank" class="bg-slate-800/50 p-2 rounded border border-slate-700 hover:border-purple-400 transition-colors cursor-pointer block text-slate-200">Gemini</a>
+          <a href="https://www.doubao.com/chat/" target="_blank" class="bg-slate-800/50 p-2 rounded border border-slate-700 hover:border-purple-400 transition-colors cursor-pointer block text-slate-200">豆包</a>
+          <a href="https://chat.deepseek.com/" target="_blank" class="bg-slate-800/50 p-2 rounded border border-slate-700 hover:border-purple-400 transition-colors cursor-pointer block text-slate-200">Deepseek</a>
+          <a href="https://chatgpt.com/" target="_blank" class="bg-slate-800/50 p-2 rounded border border-slate-700 hover:border-purple-400 transition-colors cursor-pointer block text-slate-200">ChatGPT</a>
         </div>
       </div>
+
+      <!-- 2.3 AI知识库 -->
+      <div class="glass-panel hover:shadow-[0_0_20px_rgba(168,85,247,0.2)]">
+        <h2 class="text-purple-400 font-bold mb-4">AI Next</h2>
+        <div class="grid grid-cols-2 gap-2 text-xs text-center font-mono">
+        <a href="https://notebooklm.google/" target="_blank" class="bg-slate-800/50 p-2 rounded border border-slate-700 hover:border-purple-400 transition-colors cursor-pointer block text-slate-200">Notebooklm</a>
+        <a href="https://ima.qq.com/" target="_blank" class="bg-slate-800/50 p-2 rounded border border-slate-700 hover:border-purple-400 transition-colors cursor-pointer block text-slate-200">腾讯ima</a>
+        <a href="https://github.com/copilot/" target="_blank" class="bg-slate-800/50 p-2 rounded border border-slate-700 hover:border-purple-400 transition-colors cursor-pointer block text-slate-200">Github Copilot</a>
+          </div>
+      </div>
+
+        <!-- 2.4 AI调用 -->
+      <div class="glass-panel hover:shadow-[0_0_20px_rgba(168,85,247,0.2)]">
+        <h2 class="text-purple-400 font-bold mb-4">AI Tank</h2>
+        <div class="grid grid-cols-2 gap-2 text-xs text-center font-mono">
+          <a href="https://claude.ai/" target="_blank" class="bg-slate-800/50 p-2 rounded border border-slate-700 hover:border-purple-400 transition-colors cursor-pointer block text-slate-200">Claude</a>
+          <a href="https://platform.deepseek.com/api_keys" target="_blank" class="bg-slate-800/50 p-2 rounded border border-slate-700 hover:border-purple-400 transition-colors cursor-pointer block text-slate-200">Deepseek api</a>
+          <a href="https://www.volcengine.com/" target="_blank" class="bg-slate-800/50 p-2 rounded border border-slate-700 hover:border-purple-400 transition-colors cursor-pointer block text-slate-200">豆包 api</a>
+          </div>
+      </div>
+      
     </aside>
+
+    <!-- ---------------------------------------- -->
+    <!-- 模块 3：中央宇宙警备队本阵 (主舞台，占 6/12 列) -->
+    <!-- 功能：个人整理的核心输出区、最新日志瀑布流展示 -->
+    <!-- ---------------------------------------- -->
     <section class="md:col-span-6 flex flex-col gap-6">
       <div class="glass-panel h-full border-t-4 border-t-cyan-500">
         <h1 class="text-2xl font-bold mb-6 text-white tracking-wide">Ac's Workflow & Life Log</h1>
+        
+        <!-- ========================================== -->
+        <!-- ⚡ 新增：自律与效率兵器库 (快捷调取) -->
+        <!-- ========================================== -->
+        <div class="flex flex-wrap gap-3 mb-8">
+          <!-- 工具 1 -->
+          <a href="https://water0523.github.io/RestoreTimingTimer/" target="_blank" class="bg-slate-800/50 px-4 py-2 rounded border border-slate-700 hover:border-cyan-400 hover:text-cyan-300 hover:shadow-[0_0_10px_rgba(6,182,212,0.3)] transition-all cursor-pointer text-xs font-mono text-slate-200 flex items-center gap-1">
+            ⏱️ timing
+          </a>
+          <!-- 工具 2 -->
+          <a href="https://www.icloud.com.cn/calendar/" target="_blank" class="bg-slate-800/50 px-4 py-2 rounded border border-slate-700 hover:border-cyan-400 hover:text-cyan-300 hover:shadow-[0_0_10px_rgba(6,182,212,0.3)] transition-all cursor-pointer text-xs font-mono text-slate-200 flex items-center gap-1">
+            📥 日历与日程
+          </a>
+        </div>
+
+        <!-- ⚡ PDF 核心调取控制台 (对接 LaTeX 自动化流) -->
+        <div class="mb-8 p-4 bg-red-600/5 border border-red-500/20 rounded-xl flex items-center justify-between">
+          <div class="text-sm">
+            <p class="text-red-400 font-bold italic">LaTeX 实时同步中</p>
+            <p class="text-slate-500 text-xs font-mono">Archive: Ac_Log.pdf</p>
+          </div>
+          <a href="/Ac_Log.pdf" target="_blank" class="bg-red-600/20 text-red-400 border border-red-500/50 px-5 py-2 rounded-lg hover:bg-red-600/40 hover:scale-105 transition-all font-bold text-sm shadow-[0_0_15px_rgba(239,68,68,0.2)]">
+            ⚡ 调取完整版档案
+          </a>
+        </div>
+        
+        <!-- 日志卡片容器 -->
         <div class="space-y-4">
+          <!-- 单个日志卡片 (系统重构) -->
           <div class="block bg-slate-900/50 p-4 rounded-lg border border-slate-700">
             <div class="flex justify-between items-center mb-2">
               <span class="text-xs font-mono bg-cyan-900/50 text-cyan-300 px-2 py-1 rounded">2026.04.10</span>
-              <span class="text-xs text-slate-400">#随想</span>
+              <span class="text-xs text-slate-400">#系统重构</span>
             </div>
-            <h3 class="font-bold text-lg mb-1">系统重构完成</h3>
-            <p class="text-sm text-slate-400">数字光之国终于部署成功，脱离了笨重的排版，迎来了灵动的数据流。</p>
+            <h3 class="font-bold text-lg mb-1">从 LaTeX 到数字光之国的跃迁</h3>
+            <p class="text-sm text-slate-400">成功建立自动化搬运流水线，将重度编辑与轻量展示分离...</p>
           </div>
+          <!-- 未来可以在这里继续叠加更多日志卡片 -->
         </div>
+
       </div>
     </section>
+
+    <!-- ---------------------------------------- -->
+    <!-- 模块 4：右侧战备与协议区 (侧边栏，占 3/12 列) -->
+    <!-- 功能：SOP 规范打卡、正在进行的项目进度 (Active Projects) -->
+    <!-- ---------------------------------------- -->
     <aside class="md:col-span-3 flex flex-col gap-6">
+      
+      <!-- 4.1 异星交涉室 SOP (规则与习惯管理) -->
       <div class="glass-panel border-t-4 border-t-red-500">
-        <h2 class="text-red-400 font-bold mb-4">异星交涉室 SOP</h2>
+        <h2 class="text-red-400 font-bold mb-4 flex items-center gap-2">
+          <span>异星交涉室 SOP</span>
+        </h2>
+        <!-- 具体的打卡/协议条目 -->
         <div class="bg-slate-900/80 p-3 rounded text-sm text-slate-300 border border-red-900/50">
-          <p class="font-bold mb-1">收藏夹清理</p>
-          <p class="text-xs text-slate-400">每周日 21:00 执行。</p>
+          <p class="font-bold mb-1">收藏夹清理协议</p>
+          <p class="text-xs text-slate-400">每周日 21:00 执行，不得违约。</p>
         </div>
       </div>
+      
+      <!-- 未来可以在这里添加 4.2 Active Projects 项目进度条组件 -->
+
     </aside>
+
   </main>
-</Layout> 
+</Layout>
