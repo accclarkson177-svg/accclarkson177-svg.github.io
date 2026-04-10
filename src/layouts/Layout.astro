@@ -1,0 +1,46 @@
+
+
+---
+import '../styles/global.css';
+
+const { title } = Astro.props;
+---
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{title}</title>
+  </head>
+  <body class="bg-slate-950 text-slate-200 min-h-screen relative overflow-x-hidden font-sans">
+    <!-- 背景层：星空与等离子火花塔光晕 -->
+    <div class="fixed inset-0 z-0 opacity-30 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-cyan-900 via-slate-950 to-slate-950"></div>
+    
+    <div class="relative z-10 max-w-6xl mx-auto p-6">
+      <slot />
+    </div>
+
+   <style is:global>
+      @keyframes color-timer-pulse {
+        0%, 100% { box-shadow: 0 0 10px #06b6d4, 0 0 20px #06b6d4; background-color: #06b6d4; }
+        50% { box-shadow: 0 0 2px #06b6d4, 0 0 5px #06b6d4; background-color: #0891b2; }
+      }
+      .timer-safe { animation: color-timer-pulse 2s infinite; }
+      
+      /* 使用原生 CSS 重写玻璃面板，避开 Tailwind v4 的审查 */
+      .glass-panel {
+        background-color: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 1rem;
+        padding: 1.5rem;
+        transition: all 0.3s ease;
+      }
+      .glass-panel:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+        border-color: rgba(255, 255, 255, 0.3);
+      }
+    </style>
+  </body>
+</html>

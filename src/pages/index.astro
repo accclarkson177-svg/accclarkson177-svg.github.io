@@ -1,17 +1,53 @@
 ---
-
+import Layout from '../layouts/Layout.astro';
 ---
-
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout title="Ac's Nexus | 光之国数字枢纽">
+  <header class="glass-panel flex items-center justify-between mb-8 sticky top-4 z-50">
+    <div class="flex items-center gap-4 w-full max-w-2xl">
+      <div class="w-4 h-4 rounded-full timer-safe border border-white/50"></div>
+      <input type="text" placeholder="/检索日志... 唤醒泽塔终端" class="bg-transparent border-none outline-none text-xl w-full text-cyan-50 placeholder-slate-500 font-mono"/>
+    </div>
+  </header>
+  <main class="grid grid-cols-1 md:grid-cols-12 gap-6">
+    <aside class="md:col-span-3 flex flex-col gap-6">
+      <div class="glass-panel hover:shadow-[0_0_20px_rgba(6,182,212,0.2)]">
+        <h2 class="text-cyan-400 font-bold mb-4">ZJU & Tools</h2>
+        <ul class="space-y-3 font-mono text-sm">
+          <li><a href="#" class="hover:text-cyan-300 transition-colors">▶ 学在浙大 (ZJU)</a></li>
+          <li><a href="#" class="hover:text-cyan-300 transition-colors">▶ GitHub / VSCode</a></li>
+        </ul>
+      </div>
+      <div class="glass-panel hover:shadow-[0_0_20px_rgba(168,85,247,0.2)]">
+        <h2 class="text-purple-400 font-bold mb-4">AI Arsenal</h2>
+        <div class="grid grid-cols-2 gap-2 text-xs text-center font-mono">
+          <div class="bg-slate-800/50 p-2 rounded border border-slate-700 cursor-pointer">Claude</div>
+          <div class="bg-slate-800/50 p-2 rounded border border-slate-700 cursor-pointer">Gemini</div>
+        </div>
+      </div>
+    </aside>
+    <section class="md:col-span-6 flex flex-col gap-6">
+      <div class="glass-panel h-full border-t-4 border-t-cyan-500">
+        <h1 class="text-2xl font-bold mb-6 text-white tracking-wide">Ac's Workflow & Life Log</h1>
+        <div class="space-y-4">
+          <div class="block bg-slate-900/50 p-4 rounded-lg border border-slate-700">
+            <div class="flex justify-between items-center mb-2">
+              <span class="text-xs font-mono bg-cyan-900/50 text-cyan-300 px-2 py-1 rounded">2026.04.10</span>
+              <span class="text-xs text-slate-400">#随想</span>
+            </div>
+            <h3 class="font-bold text-lg mb-1">系统重构完成</h3>
+            <p class="text-sm text-slate-400">数字光之国终于部署成功，脱离了笨重的排版，迎来了灵动的数据流。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <aside class="md:col-span-3 flex flex-col gap-6">
+      <div class="glass-panel border-t-4 border-t-red-500">
+        <h2 class="text-red-400 font-bold mb-4">异星交涉室 SOP</h2>
+        <div class="bg-slate-900/80 p-3 rounded text-sm text-slate-300 border border-red-900/50">
+          <p class="font-bold mb-1">收藏夹清理</p>
+          <p class="text-xs text-slate-400">每周日 21:00 执行。</p>
+        </div>
+      </div>
+    </aside>
+  </main>
+</Layout> 
