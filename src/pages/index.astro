@@ -15,7 +15,7 @@ import Layout from '../layouts/Layout.astro';
   <!-- ========================================== -->
   <header class="glass-panel flex items-center justify-between mb-8 sticky top-4 z-50">
     <div class="flex items-center gap-4 w-full max-w-2xl">
-      <!-- 彩色计时器 (呼吸灯指示当前状态) -->
+      <!-- 彩色计时器 (呼吸灯指示当前状态) --> 
       <div class="w-4 h-4 rounded-full timer-safe border border-white/50"></div>
       <!-- 泽塔终端唤醒 / 搜索输入框 -->
       <input type="text" placeholder="/检索日志... 唤醒泽塔终端" class="bg-transparent border-none outline-none text-xl w-full text-cyan-50 placeholder-slate-500 font-mono"/>
@@ -94,7 +94,7 @@ import Layout from '../layouts/Layout.astro';
     <!-- 功能：个人整理的核心输出区、最新日志瀑布流展示 -->
     <!-- ---------------------------------------- -->
     <section class="md:col-span-6 flex flex-col gap-6">
-      <div class="glass-panel h-fit border-t-4 border-t-cyan-500">
+       <div class="bg-slate-0/0 backdrop-blur-md border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.5)] rounded-2xl p-5">
         <h1 class="text-2xl font-bold mb-6 text-white tracking-wide">Ac's Workflow & Life Log</h1>
         
         <!-- ========================================== -->
@@ -108,21 +108,40 @@ import Layout from '../layouts/Layout.astro';
           <!-- 工具 2 -->
           <a href="https://www.icloud.com.cn/calendar/" target="_blank" class="bg-slate-800/50 px-4 py-2 rounded border border-slate-700 hover:border-cyan-400 hover:text-cyan-300 hover:shadow-[0_0_10px_rgba(6,182,212,0.3)] transition-all cursor-pointer text-xs font-mono text-slate-200 flex items-center gap-1">
             📥 日历与日程
-
+          </a>
           <!-- 工具 3 -->
           <a href="https://www.luogu.com.cn/" target="_blank" class="bg-slate-800/50 px-4 py-2 rounded border border-slate-700 hover:border-cyan-400 hover:text-cyan-300 hover:shadow-[0_0_10px_rgba(6,182,212,0.3)] transition-all cursor-pointer text-xs font-mono text-slate-200 flex items-center gap-1">
             洛谷
           </a>
-          </a>
           <!-- 工具 4 -->
+          <a href="https://www.bilibili.com/" target="_blank" class="bg-slate-800/50 px-4 py-2 rounded border border-slate-700 hover:border-cyan-400 hover:text-cyan-300 hover:shadow-[0_0_10px_rgba(6,182,212,0.3)] transition-all cursor-pointer text-xs font-mono text-slate-200 flex items-center gap-1">
+            B站
+          </a>
+          <!-- 工具 5 -->
+          <a href="https://www.youtube.com/" target="_blank" class="bg-slate-800/50 px-4 py-2 rounded border border-slate-700 hover:border-cyan-400 hover:text-cyan-300 hover:shadow-[0_0_10px_rgba(6,182,212,0.3)] transition-all cursor-pointer text-xs font-mono text-slate-200 flex items-center gap-1">
+            Youtube
+          </a>
+          <!-- 工具 6 -->
           <a href="https://mail.google.com/mail/u/0/#inbox" target="_blank" class="bg-slate-800/50 px-4 py-2 rounded border border-slate-700 hover:border-cyan-400 hover:text-cyan-300 hover:shadow-[0_0_10px_rgba(6,182,212,0.3)] transition-all cursor-pointer text-xs font-mono text-slate-200 flex items-center gap-1">
             Gmail
           </a>
-          <!-- 工具 5 -->
+          <!-- 工具 7 -->
           <a href="https://wx.mail.qq.com/" target="_blank" class="bg-slate-800/50 px-4 py-2 rounded border border-slate-700 hover:border-cyan-400 hover:text-cyan-300 hover:shadow-[0_0_10px_rgba(6,182,212,0.3)] transition-all cursor-pointer text-xs font-mono text-slate-200 flex items-center gap-1">
             QQ mail
           </a>
-        </div>
+          <!-- 工具 8 -->
+          <a href="https://cn.imslp.org/wiki/Main_Page" target="_blank" class="bg-slate-800/50 px-4 py-2 rounded border border-slate-700 hover:border-cyan-400 hover:text-cyan-300 hover:shadow-[0_0_10px_rgba(6,182,212,0.3)] transition-all cursor-pointer text-xs font-mono text-slate-200 flex items-center gap-1">
+            IMSLP
+          </a>
+          <!-- 工具 9 -->
+          <a href="https://zh.z-library.sk/" target="_blank" class="bg-slate-800/50 px-4 py-2 rounded border border-slate-700 hover:border-cyan-400 hover:text-cyan-300 hover:shadow-[0_0_10px_rgba(6,182,212,0.3)] transition-all cursor-pointer text-xs font-mono text-slate-200 flex items-center gap-1">
+            Zlib
+          </a>
+          <!-- 工具 10 -->
+          <a href="https://magazinelib.com/" target="_blank" class="bg-slate-800/50 px-4 py-2 rounded border border-slate-700 hover:border-cyan-400 hover:text-cyan-300 hover:shadow-[0_0_10px_rgba(6,182,212,0.3)] transition-all cursor-pointer text-xs font-mono text-slate-200 flex items-center gap-1">
+            Magazine lib
+          </a>
+          </div>
 
 
         <!-- ⚡ PDF 核心调取控制台 (对接 LaTeX 自动化流) -->
