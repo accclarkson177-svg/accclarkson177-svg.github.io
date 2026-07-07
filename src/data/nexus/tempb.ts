@@ -25,6 +25,20 @@ export const tempb: NexusPage = {
             },
           ],
         },
+        {
+          title: '外壳',
+          accent: '#ef4444',
+          sections: [
+            {
+              type: 'links',
+              layout: 'grid',
+              columns: 2,
+              items: [
+                { label: 'chatbox', href: 'https://chatboxai.app/zh' },
+              ],
+            },
+          ],
+        },
       ],
     },
     {
@@ -38,11 +52,25 @@ export const tempb: NexusPage = {
             {
               type: 'links',
               layout: 'grid',
-              columns: 3,
+              columns: 4,
               items: [
                 { label: 'Notebooklm', href: 'https://notebooklm.google/' },
                 { label: '腾讯ima', href: 'https://ima.qq.com/' },
                 { label: 'Github Copilot', href: 'https://github.com/copilot/' },
+              ],
+            },
+          ],
+        },
+        {
+          title: 'AI assist',
+          accent: '#1d4ed8',
+          sections: [
+            {
+              type: 'links',
+              layout: 'grid',
+              columns: 4,
+              items: [
+                { label: 'Gemini网页插件', href: 'https://voyager.nagi.fun/' },
               ],
             },
           ],
@@ -59,8 +87,10 @@ export const tempb: NexusPage = {
             {
               type: 'links',
               layout: 'grid',
-              columns: 1,
+              columns: 2,
               items: [
+                { label: 'XcodeAPI', href: 'https://xcode.best/' },
+                { label: 'AI订阅FAQ', href: 'https://aixiaobo.cn/' },
                 { label: 'Claude', href: 'https://claude.ai/' },
                 { label: 'Deepseek api', href: 'https://platform.deepseek.com/api_keys' },
                 { label: '豆包 api', href: 'https://www.volcengine.com/' },
@@ -69,15 +99,15 @@ export const tempb: NexusPage = {
           ],
         },
         {
-          title: 'AI assist',
-          accent: '#1d4ed8',
+          title: '调试样例',
+          accent: '#22c55e',
           sections: [
             {
               type: 'links',
               layout: 'grid',
-              columns: 1,
+              columns: 2,
               items: [
-                { label: 'Gemini网页插件', href: 'https://voyager.nagi.fun/' },
+                { label: '灵感风暴', href: 'https://lingganfengbao.com/' },
               ],
             },
           ],

@@ -14,7 +14,7 @@ export const tempc: NexusPage = {
             {
               type: 'links',
               layout: 'grid',
-              columns: 1,
+              columns: 2,
               items: [
                 { label: '剑桥词典', href: 'https://dictionary.cambridge.org/zhs/' },
                 { label: '中国日报', href: 'https://www.chinadaily.com.cn/' },
@@ -58,7 +58,7 @@ export const tempc: NexusPage = {
             {
               type: 'links',
               layout: 'grid',
-              columns: 3,
+              columns: 4,
               items: [
                 { label: 'Realme', href: 'https://www.arealme.com/cn#google_vignette' },
                 { label: 'Schurt 1', href: 'https://www.tooljson.com/shuerte' },
@@ -82,7 +82,7 @@ export const tempc: NexusPage = {
             {
               type: 'links',
               layout: 'grid',
-              columns: 1,
+              columns: 2,
               items: [
                 { label: '默沙东诊疗手册', href: 'https://www.msdmanuals.cn/' },
                 { label: '互联网档案馆', href: 'https://web.archive.org/' },

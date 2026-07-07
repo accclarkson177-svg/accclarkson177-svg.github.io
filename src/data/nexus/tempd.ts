@@ -14,7 +14,7 @@ export const tempd: NexusPage = {
             {
               type: 'links',
               layout: 'grid',
-              columns: 1,
+              columns: 2,
               items: [
                 { label: 'PDF工具合集', href: 'https://www.ilovepdf.com/zh-cn' },
               ],
@@ -28,7 +28,7 @@ export const tempd: NexusPage = {
             {
               type: 'links',
               layout: 'grid',
-              columns: 1,
+              columns: 2,
               items: [
                 { label: '视频下载1', href: 'https://snapany.com/zh/bilibili' },
                 { label: '视频下载2', href: 'https://www.datatool.vip/' },
@@ -50,7 +50,7 @@ export const tempd: NexusPage = {
             {
               type: 'links',
               layout: 'grid',
-              columns: 2,
+              columns: 4,
               items: [
                 { label: 'P图工具合集', href: 'https://www.iloveimg.com/zh-cn' },
                 { label: '抠图工具', href: 'https://www.koukoutu.com/' },
@@ -68,7 +68,7 @@ export const tempd: NexusPage = {
             {
               type: 'links',
               layout: 'grid',
-              columns: 3,
+              columns: 4,
               items: [
                 { label: '纸由我', href: 'https://paperme.toolooz.com/' },
                 { label: 'Math2TeX', href: 'https://www.math2tex.com/' },
@@ -92,7 +92,7 @@ export const tempd: NexusPage = {
             {
               type: 'links',
               layout: 'grid',
-              columns: 1,
+              columns: 2,
               items: [
                 { label: '生图工具', href: 'http://lowentro.cn/paint/' },
                 { label: '图像资源库', href: 'https://pngimg.com/' },

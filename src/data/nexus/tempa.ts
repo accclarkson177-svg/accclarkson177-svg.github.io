@@ -30,10 +30,8 @@ export const tempa: NexusPage = {
               layout: 'grid',
               columns: 2,
               items: [
-                { label: 'AI订阅FAQ', href: 'https://aixiaobo.cn/' },
                 { label: 'ZJU导航', href: 'https://zjuers.com/' },
-                { label: '百万立方导航', href: 'https://zjuers.com/mc.html' },
-                { label: 'Github', href: 'https://github.com/' },
+                { label: '百万立方', href: 'https://zjuers.com/mc.html' },
                 { label: '导航1', href: 'https://tools.rosetears.cn/' },
                 { label: '导航2', href: 'https://tool.liumingye.cn/' },
               ],
