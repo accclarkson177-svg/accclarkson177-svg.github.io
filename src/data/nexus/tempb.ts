@@ -68,6 +68,20 @@ export const tempb: NexusPage = {
             },
           ],
         },
+        {
+          title: 'AI assist',
+          accent: '#1d4ed8',
+          sections: [
+            {
+              type: 'links',
+              layout: 'grid',
+              columns: 1,
+              items: [
+                { label: 'Gemini网页插件', href: 'https://voyager.nagi.fun/' },
+              ],
+            },
+          ],
+        },
       ],
     },
   ],

@@ -93,6 +93,7 @@ export const tempa: NexusPage = {
                   label: 'Rolemodel3',
                   href: 'https://webvpn.zju.edu.cn/https/77726476706e69737468656265737421f3e540863e23785f6a1c8ca89c5a3530c09012b53c383aa60352/projects/',
                 },
+                { label: 'Rolemodel4', href: 'https://mistatle.github.io/' },
               ],
             },
           ],
