@@ -21,6 +21,7 @@ export const tempb: NexusPage = {
                 { label: 'Deepseek', href: 'https://chat.deepseek.com/' },
                 { label: 'ChatGPT', href: 'https://chatgpt.com/' },
                 { label: 'Claude', href: 'https://claude.ai/new' },
+                { label: 'Kimi', href: 'https://www.kimi.com/' },
               ],
             },
           ],
@@ -35,6 +36,7 @@ export const tempb: NexusPage = {
               columns: 2,
               items: [
                 { label: 'chatbox', href: 'https://chatboxai.app/zh' },
+                { label: 'Lobe', href: 'https://lobe.jubotech.com/welcome' },
               ],
             },
           ],
@@ -94,6 +96,8 @@ export const tempb: NexusPage = {
                 { label: 'Claude', href: 'https://claude.ai/' },
                 { label: 'Deepseek api', href: 'https://platform.deepseek.com/api_keys' },
                 { label: '豆包 api', href: 'https://www.volcengine.com/' },
+                { label: 'CodeWiki', href: 'https://codewiki.google/' },
+                { label: 'OpenAI', href: 'https://platform.openai.com/home' },
               ],
             },
           ],
@@ -108,6 +112,7 @@ export const tempb: NexusPage = {
               columns: 2,
               items: [
                 { label: '灵感风暴', href: 'https://lingganfengbao.com/' },
+                { label: 'TheTawave', href: 'https://thetawave.ai/' },
               ],
             },
           ],
