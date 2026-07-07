@@ -64,6 +64,8 @@ export const tempa: NexusPage = {
                 { label: 'IMSLP', href: 'https://cn.imslp.org/wiki/Main_Page' },
                 { label: 'Zlib', href: 'https://zh.z-library.sk/' },
                 { label: 'Magazine lib', href: 'https://magazinelib.com/' },
+                { label: '提问的智慧', href: 'https://www.luogu.com.cn/article/fraraxmh' },
+                { label: 'Cokecloud', href: 'https://47.238.225.31:1000/#/stage/dashboard' }
               ],
             },
             {
