@@ -72,7 +72,7 @@ export const tempb: NexusPage = {
               layout: 'grid',
               columns: 4,
               items: [
-                { label: 'Gemini网页插件', href: 'https://voyager.nagi.fun/' },
+                { label: 'Gemini插件', href: 'https://voyager.nagi.fun/' },
               ],
             },
           ],
@@ -94,7 +94,7 @@ export const tempb: NexusPage = {
                 { label: 'XcodeAPI', href: 'https://xcode.best/' },
                 { label: 'AI订阅FAQ', href: 'https://aixiaobo.cn/' },
                 { label: 'Claude', href: 'https://claude.ai/' },
-                { label: 'Deepseek api', href: 'https://platform.deepseek.com/api_keys' },
+                { label: 'Dsapi', href: 'https://platform.deepseek.com/api_keys' },
                 { label: '豆包 api', href: 'https://www.volcengine.com/' },
                 { label: 'CodeWiki', href: 'https://codewiki.google/' },
                 { label: 'OpenAI', href: 'https://platform.openai.com/home' },

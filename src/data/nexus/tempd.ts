@@ -98,6 +98,7 @@ export const tempd: NexusPage = {
                 { label: '图像资源库', href: 'https://pngimg.com/' },
                 { label: '壁纸库', href: 'https://haowallpaper.com/' },
                 { label: '找校徽', href: 'https://www.urongda.com/' },
+                { label: '设计资源', href: 'https://resourceboy.com/' },
               ],
             },
           ],

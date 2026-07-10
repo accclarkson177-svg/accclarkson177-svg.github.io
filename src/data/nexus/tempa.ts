@@ -54,9 +54,11 @@ export const tempa: NexusPage = {
               items: [
                 { label: 'Github', href: 'https://github.com/' },
                 { label: '个人图书馆', href: 'https://acxikaly.top/note/' },
+                { label: '超棒工具箱', href: 'https://www.jyshare.com/' },
                 { label: 'timing', href: 'https://water0523.github.io/RestoreTimingTimer/' },
                 { label: '日历与日程', href: 'https://www.icloud.com.cn/calendar/' },
                 { label: '洛谷', href: 'https://www.luogu.com.cn/' },
+                { label: 'LeetCode', href: 'https://leetcode.cn/' },
                 { label: 'B站', href: 'https://www.bilibili.com/' },
                 { label: 'Youtube', href: 'https://www.youtube.com/' },
                 { label: 'Gmail', href: 'https://mail.google.com/mail/u/0/#inbox' },
