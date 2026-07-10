@@ -53,7 +53,7 @@ export const tempb: NexusPage = {
           sections: [
             {
               type: 'links',
-              layout: 'grid',
+              layout: 'wrap',
               columns: 4,
               items: [
                 { label: 'Notebooklm', href: 'https://notebooklm.google/' },

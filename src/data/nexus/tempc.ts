@@ -57,7 +57,7 @@ export const tempc: NexusPage = {
           sections: [
             {
               type: 'links',
-              layout: 'grid',
+              layout: 'wrap',
               columns: 4,
               items: [
                 { label: 'Realme', href: 'https://www.arealme.com/cn#google_vignette' },

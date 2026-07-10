@@ -49,7 +49,7 @@ export const tempd: NexusPage = {
           sections: [
             {
               type: 'links',
-              layout: 'grid',
+              layout: 'wrap',
               columns: 4,
               items: [
                 { label: 'P图工具合集', href: 'https://www.iloveimg.com/zh-cn' },
@@ -67,7 +67,7 @@ export const tempd: NexusPage = {
           sections: [
             {
               type: 'links',
-              layout: 'grid',
+              layout: 'wrap',
               columns: 4,
               items: [
                 { label: '纸由我', href: 'https://paperme.toolooz.com/' },

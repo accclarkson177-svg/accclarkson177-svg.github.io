@@ -88,7 +88,7 @@ export const tempa: NexusPage = {
           sections: [
             {
               type: 'links',
-              layout: 'grid',
+              layout: 'wrap',
               columns: 4,
               items: [
                 { label: '仙人如麻', href: 'https://isshikihugh.github.io/zju-cs-asio/' },
