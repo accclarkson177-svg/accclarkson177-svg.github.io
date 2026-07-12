@@ -18,7 +18,8 @@ export const tempa: NexusPage = {
                 { label: '学在浙大 (ZJU)', href: 'https://course.zju.edu.cn/' },
                 { label: '查老师', href: 'https://chalaoshi.netlify.app/' },
                 { label: '辅学', href: 'https://ckc-agc.bowling233.top/' },
-                { label: 'CKC', href: 'https://zjuers.com/welcome/awards%26grants/awards_ckc/' }
+                { label: 'CKC', href: 'https://zjuers.com/welcome/awards%26grants/awards_ckc/' },
+                { label: '图灵', href: 'https://zju-turing.github.io/TuringCourses/' },
               ],
             },
           ],
