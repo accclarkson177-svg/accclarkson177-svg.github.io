@@ -1,9 +1,17 @@
-
-
 ---
+import { existsSync, readdirSync } from 'node:fs';
+import { join } from 'node:path';
 import '../styles/global.css';
 
 const { title } = Astro.props;
+const backgroundDirectory = join(process.cwd(), 'public', 'backgrounds');
+const backgroundSources = existsSync(backgroundDirectory)
+  ? readdirSync(backgroundDirectory)
+      .filter((file) => /\.(avif|gif|jpe?g|png|webp)$/i.test(file))
+      .sort((left, right) => left.localeCompare(right))
+      .map((file) => `/backgrounds/${encodeURIComponent(file)}`)
+  : [];
+const backgroundPool = backgroundSources.length > 0 ? backgroundSources : ['/ultra-bg.png'];
 ---
 <!doctype html>
 <html lang="zh-CN">
@@ -12,57 +20,182 @@ const { title } = Astro.props;
     <meta name="viewport" content="width=device-width" />
     <title>{title}</title>
   </head>
-  <body class="nexus-bg-shell bg-black text-white min-h-screen">
-    <!-- 背景层：星空与等离子火花塔光晕 -->
-    <div class="fixed inset-0 z-0 opacity-30 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-cyan-900 via-slate-950 to-slate-950"></div>
-    
+  <body class="nexus-shell bg-black text-white min-h-screen">
+    <div class="nexus-background" aria-hidden="true" data-nexus-background>
+      <div class="nexus-background-base"></div>
+      <div class="nexus-background-image is-visible" data-nexus-background-layer></div>
+      <div class="nexus-background-image" data-nexus-background-layer></div>
+      <div class="nexus-background-vignette"></div>
+    </div>
+    <script type="application/json" id="nexus-background-sources" set:html={JSON.stringify(backgroundPool)}></script>
+
     <div class="relative z-10 max-w-6xl mx-auto p-6">
       <slot />
     </div>
 
     <script is:inline>
-      window.setTimeout(() => {
-        const body = document.body;
-        if (!body) return;
+      const ROTATE_MS = 10 * 60 * 1000;
+      const FIRST_SWAP_DELAY_MS = 120;
+      const sourcesNode = document.getElementById('nexus-background-sources');
+      const sources = sourcesNode ? JSON.parse(sourcesNode.textContent || '[]') : [];
+      const backgroundRoot = document.querySelector('[data-nexus-background]');
+      const layers = Array.from(document.querySelectorAll('[data-nexus-background-layer]'));
 
-        const backgroundImage = new Image();
-        backgroundImage.decoding = 'async';
-        backgroundImage.onload = () => {
-          body.style.backgroundImage = "url('/ultra-bg.png')";
-          body.classList.add('nexus-bg-image-ready');
+      if (backgroundRoot && layers.length >= 2 && sources.length > 0) {
+        let activeIndex = 0;
+        let activeSource = '';
+        let pendingToken = 0;
+        let rotationTimer = 0;
+
+        const pickSource = () => {
+          if (sources.length === 1) return sources[0];
+
+          let candidate = activeSource;
+          while (candidate === activeSource) {
+            candidate = sources[Math.floor(Math.random() * sources.length)];
+          }
+
+          return candidate;
         };
-        backgroundImage.src = '/ultra-bg.png';
-      }, 3000);
+
+        const preload = (src) =>
+          new Promise((resolve, reject) => {
+            const image = new Image();
+            image.decoding = 'async';
+            image.onload = () => resolve(src);
+            image.onerror = reject;
+            image.src = src;
+          });
+
+        const showSource = (src) => {
+          const nextIndex = 1 - activeIndex;
+          const nextLayer = layers[nextIndex];
+          const currentLayer = layers[activeIndex];
+
+          nextLayer.style.backgroundImage = `url(${JSON.stringify(src)})`;
+          nextLayer.classList.add('is-visible');
+          currentLayer.classList.remove('is-visible');
+
+          activeIndex = nextIndex;
+          activeSource = src;
+          backgroundRoot.classList.add('is-ready');
+        };
+
+        const rotateBackground = async (forcedSource) => {
+          const currentToken = ++pendingToken;
+          const source = forcedSource ?? pickSource();
+
+          if (!source || (source === activeSource && activeSource)) {
+            return;
+          }
+
+          try {
+            await preload(source);
+            if (currentToken !== pendingToken) return;
+            showSource(source);
+          } catch {
+            return;
+          }
+        };
+
+        const startRotation = () => {
+          if (rotationTimer) {
+            window.clearInterval(rotationTimer);
+          }
+
+          rotationTimer = window.setInterval(() => {
+            rotateBackground();
+          }, ROTATE_MS);
+        };
+
+        window.setTimeout(() => {
+          rotateBackground(pickSource());
+          startRotation();
+        }, FIRST_SWAP_DELAY_MS);
+      }
     </script>
 
-   <style is:global>
-      html {
+    <style is:global>
+      html,
+      body {
+        min-height: 100%;
         background: #020617;
       }
 
-      body.nexus-bg-shell {
-        background-color: #000;
-        background-image:
-          radial-gradient(circle at 76% 21%, rgba(148, 163, 184, 0.18) 0 1px, transparent 1.5px),
-          radial-gradient(circle at 33% 13%, rgba(226, 232, 240, 0.28) 0 1px, transparent 1.5px),
-          radial-gradient(circle at 58% 41%, rgba(125, 211, 252, 0.16) 0 1px, transparent 1.5px),
-          radial-gradient(ellipse at 70% 100%, rgba(250, 204, 21, 0.2), transparent 18rem),
-          radial-gradient(ellipse at 48% 102%, rgba(96, 165, 250, 0.3), transparent 28rem),
-          linear-gradient(155deg, transparent 63%, rgba(30, 64, 175, 0.72) 63.2%, rgba(191, 219, 254, 0.62) 71%, transparent 71.2%),
-          linear-gradient(24deg, transparent 67%, rgba(15, 23, 42, 0.95) 67.2%, rgba(37, 99, 235, 0.42) 77%, transparent 77.2%),
-          linear-gradient(180deg, #02030d 0%, #050a1b 46%, #0b1936 76%, #050814 100%);
-        background-position: center;
+      body.nexus-shell {
+        position: relative;
+        overflow-x: hidden;
+        background: #020617;
+      }
+
+      .nexus-background {
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+        overflow: hidden;
+        background: #020617;
+      }
+
+      .nexus-background-base,
+      .nexus-background-image,
+      .nexus-background-vignette {
+        position: absolute;
+        inset: 0;
+      }
+
+      .nexus-background-base {
+        background:
+          radial-gradient(circle at 18% 16%, rgba(255, 255, 255, 0.16) 0 1px, transparent 1.2px),
+          radial-gradient(circle at 76% 20%, rgba(125, 211, 252, 0.18) 0 1px, transparent 1.2px),
+          radial-gradient(circle at 58% 44%, rgba(148, 163, 184, 0.1) 0 1px, transparent 1.2px),
+          radial-gradient(circle at 41% 78%, rgba(14, 165, 233, 0.08) 0 1px, transparent 1.2px),
+          radial-gradient(ellipse at 50% 100%, rgba(59, 130, 246, 0.28), transparent 58%),
+          radial-gradient(ellipse at 50% 18%, rgba(8, 145, 178, 0.12), transparent 38%),
+          linear-gradient(180deg, #02030d 0%, #050a1b 44%, #08152e 76%, #02030d 100%);
+        transition: opacity 320ms ease;
+      }
+
+      .nexus-background.is-ready .nexus-background-base {
+        opacity: 0.38;
+      }
+
+      .nexus-background-image {
+        background-position: center center;
+        background-repeat: no-repeat;
         background-size: cover;
-        background-attachment: fixed;
+        opacity: 0;
+        transform: scale(1.02);
+        transition: opacity 680ms ease;
+        will-change: opacity;
+      }
+
+      .nexus-background-image.is-visible {
+        opacity: 1;
+      }
+
+      .nexus-background-vignette {
+        background:
+          linear-gradient(180deg, rgba(2, 6, 23, 0.08) 0%, rgba(2, 6, 23, 0.02) 18%, rgba(2, 6, 23, 0.14) 100%),
+          linear-gradient(0deg, rgba(2, 6, 23, 0.34) 0%, rgba(2, 6, 23, 0) 28%);
       }
 
       @keyframes color-timer-pulse {
-        0%, 100% { box-shadow: 0 0 10px #06b6d4, 0 0 20px #06b6d4; background-color: #06b6d4; }
-        50% { box-shadow: 0 0 2px #06b6d4, 0 0 5px #06b6d4; background-color: #0891b2; }
+        0%, 100% {
+          box-shadow: 0 0 10px #06b6d4, 0 0 20px #06b6d4;
+          background-color: #06b6d4;
+        }
+        50% {
+          box-shadow: 0 0 2px #06b6d4, 0 0 5px #06b6d4;
+          background-color: #0891b2;
+        }
       }
-      .timer-safe { animation: color-timer-pulse 2s infinite; }
-      
-      /* 使用原生 CSS 重写玻璃面板，避开 Tailwind v4 的审查 */
+
+      .timer-safe {
+        animation: color-timer-pulse 2s infinite;
+      }
+
+      /* 浣跨敤鍘熺敓 CSS 閲嶅啓鐜荤拑闈㈡澘锛岄伩寮€ Tailwind v4 鐨勫鏌?*/
       .glass-panel {
         background-color: rgba(255, 255, 255, 0.05);
         backdrop-filter: blur(16px);
@@ -72,6 +205,7 @@ const { title } = Astro.props;
         padding: 1.5rem;
         transition: all 0.3s ease;
       }
+
       .glass-panel:hover {
         background-color: rgba(255, 255, 255, 0);
         border-color: rgba(255, 255, 255, 0);
