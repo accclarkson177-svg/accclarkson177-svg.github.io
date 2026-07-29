@@ -1,19 +1,27 @@
 ---
+import { existsSync, readFileSync } from 'node:fs';
+import { join } from 'node:path';
 import Layout from '../layouts/Layout.astro';
 import NexusCard from '../components/NexusCard.astro';
 import { nexusPages } from '../data/nexus';
+
+const quotesPath = join(process.cwd(), 'src', 'data', 'daily-quotes.md');
+const quoteLines = existsSync(quotesPath) ? readFileSync(quotesPath, 'utf8').split(/\r?\n/) : [];
+const dailyQuotes = quoteLines
+  .map((line) => line.trim())
+  .filter((line) => line && !line.startsWith('#'))
+  .map((line) => line.replace(/^\d+\s*(?:[.)、:：-]\s*)?/, '').trim())
+  .filter(Boolean);
+const fallbackQuote = dailyQuotes[0] ?? '这是测试';
 ---
 
 <Layout title="Ac's Nexus | 光之国数字枢纽">
   <header class="glass-panel nexus-omni-bar">
-    <div class="flex items-center gap-4 w-full max-w-2xl">
+    <div class="nexus-quote-shell">
       <div class="w-4 h-4 rounded-full timer-safe border border-white/50"></div>
-      <input
-        type="text"
-        placeholder=""
-        class="bg-transparent border-none outline-none text-xl w-full text-cyan-50 placeholder-slate-500 font-mono"
-      />
+      <p class="nexus-daily-quote" data-daily-quote title={fallbackQuote}>{fallbackQuote}</p>
     </div>
+    <script type="application/json" id="nexus-daily-quotes" set:html={JSON.stringify(dailyQuotes)}></script>
   </header>
 
   <nav class="glass-panel nexus-subnav" aria-label="Nexus sections">
@@ -81,9 +89,76 @@ import { nexusPages } from '../data/nexus';
       button.setAttribute('aria-expanded', String(!isCollapsed));
     });
   });
+
+  const quoteNode = document.querySelector('[data-daily-quote]');
+  const quoteSourceNode = document.getElementById('nexus-daily-quotes');
+
+  if (quoteNode && quoteSourceNode) {
+    const quotes = JSON.parse(quoteSourceNode.textContent || '[]');
+
+    if (quotes.length > 0) {
+      const today = new Date();
+      const todayKey = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
+      const storageKey = 'nexus-daily-quote';
+      const quoteVersion = quotes.join('\n');
+      let selectedQuote = '';
+
+      try {
+        const cached = JSON.parse(window.localStorage.getItem(storageKey) || 'null');
+        if (cached?.date === todayKey && cached?.version === quoteVersion && quotes.includes(cached.quote)) {
+          selectedQuote = cached.quote;
+        }
+      } catch {
+        selectedQuote = '';
+      }
+
+      if (!selectedQuote) {
+        selectedQuote = quotes[Math.floor(Math.random() * quotes.length)];
+
+        try {
+          window.localStorage.setItem(
+            storageKey,
+            JSON.stringify({
+              date: todayKey,
+              quote: selectedQuote,
+              version: quoteVersion,
+            }),
+          );
+        } catch {
+          // Ignore storage failures; the quote still renders for this visit.
+        }
+      }
+
+      quoteNode.textContent = selectedQuote;
+      quoteNode.setAttribute('title', selectedQuote);
+    }
+  }
 </script>
 
 <style>
+  .nexus-quote-shell {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    min-width: 0;
+    gap: 1rem;
+  }
+
+  .nexus-daily-quote {
+    min-width: 0;
+    width: 100%;
+    overflow: hidden;
+    color: rgb(207, 250, 254);
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: 1.4;
+    text-overflow: ellipsis;
+    text-shadow: 0 0 18px rgba(103, 232, 249, 0.34);
+    white-space: nowrap;
+  }
+
   .nexus-omni-bar {
     position: sticky;
     top: 1rem;
@@ -187,6 +262,10 @@ import { nexusPages } from '../data/nexus';
   @media (max-width: 560px) {
     .nexus-omni-bar {
       position: static;
+    }
+
+    .nexus-daily-quote {
+      font-size: 0.98rem;
     }
 
     .nexus-tab {
