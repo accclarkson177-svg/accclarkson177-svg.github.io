@@ -74,13 +74,6 @@ export const tempa: NexusPage = {
                 { label: '聚名网', href: 'https://www.juming.com/' }
               ],
             },
-            {
-              type: 'callout',
-              title: 'LaTeX 实时同步中',
-              subtitle: 'Archive: Ac_Log.pdf',
-              href: '/Ac_Log.pdf',
-              action: '调取完整版档案',
-            },
           ],
         },
         {

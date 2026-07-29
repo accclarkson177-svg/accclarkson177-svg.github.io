@@ -9,8 +9,7 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro",
-    "push-log": "copy .\\tex-source\\out\\Ac_Log.pdf .\\public\\Ac_Log.pdf && git add . && git commit -m \"sync: 自动更新 LaTeX 日志\" && git push"
+    "astro": "astro"
   },
   "dependencies": {
     "@astrojs/mdx": "^5.0.3",
