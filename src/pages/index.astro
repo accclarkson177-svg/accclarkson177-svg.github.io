@@ -13,15 +13,49 @@ const dailyQuotes = quoteLines
   .map((line) => line.replace(/^\d+\s*(?:[.)、:：-]\s*)?/, '').trim())
   .filter(Boolean);
 const fallbackQuote = dailyQuotes[0] ?? '这是测试';
+const fallbackQuoteLength = Array.from(fallbackQuote).length;
+const fallbackQuoteSizeClass =
+  fallbackQuoteLength > 48 ? 'quote-length-long' : fallbackQuoteLength > 28 ? 'quote-length-medium' : '';
+
+const vocabularyPath = join(process.cwd(), 'src', 'data', 'vocabulary.md');
+const vocabularyLines = existsSync(vocabularyPath) ? readFileSync(vocabularyPath, 'utf8').split(/\r?\n/) : [];
+const vocabularyEntries = vocabularyLines
+  .map((line) => line.trim())
+  .filter((line) => line && !line.startsWith('#'))
+  .map((line) => line.replace(/^\d+\s*(?:[.)、:：-]\s*)?/, '').trim())
+  .map((line) => {
+    const [word = '', partOfSpeech = '', ...meaningParts] = line.split('|').map((part) => part.trim());
+    return { word, partOfSpeech, meaning: meaningParts.join('|') };
+  })
+  .filter((entry) => entry.word && entry.partOfSpeech && entry.meaning);
+const fallbackVocabulary = vocabularyEntries[0] ?? {
+  word: 'artifact',
+  partOfSpeech: 'n.',
+  meaning: '人工文物',
+};
 ---
 
 <Layout title="Ac's Nexus | 光之国数字枢纽">
-  <header class="glass-panel nexus-omni-bar">
-    <div class="nexus-quote-shell">
-      <div class="w-4 h-4 rounded-full timer-safe border border-white/50"></div>
-      <p class="nexus-daily-quote" data-daily-quote title={fallbackQuote}>{fallbackQuote}</p>
+  <header class="nexus-omni-bar">
+    <div class="glass-panel nexus-omni-panel">
+      <div class="nexus-quote-shell">
+        <div class="w-4 h-4 rounded-full timer-safe border border-white/50"></div>
+        <p class:list={['nexus-daily-quote', fallbackQuoteSizeClass]} data-daily-quote title={fallbackQuote}>
+          {fallbackQuote}
+        </p>
+      </div>
     </div>
+    <aside class="glass-panel nexus-omni-panel nexus-word-panel" aria-label="随机单词">
+      <div class="nexus-word-content">
+        <div class="nexus-word-heading">
+          <strong class="nexus-word" data-vocabulary-word>{fallbackVocabulary.word}</strong>
+          <span class="nexus-word-pos" data-vocabulary-pos>{fallbackVocabulary.partOfSpeech}</span>
+        </div>
+        <p class="nexus-word-meaning" data-vocabulary-meaning>{fallbackVocabulary.meaning}</p>
+      </div>
+    </aside>
     <script type="application/json" id="nexus-daily-quotes" set:html={JSON.stringify(dailyQuotes)}></script>
+    <script type="application/json" id="nexus-vocabulary" set:html={JSON.stringify(vocabularyEntries)}></script>
   </header>
 
   <nav class="glass-panel nexus-subnav" aria-label="Nexus sections">
@@ -59,6 +93,16 @@ const fallbackQuote = dailyQuotes[0] ?? '这是测试';
   const tabs = Array.from(document.querySelectorAll('[data-nexus-tab]'));
   const pages = Array.from(document.querySelectorAll('[data-nexus-page]'));
   const slider = document.querySelector('[data-nexus-slider]');
+  const omniBar = document.querySelector('.nexus-omni-bar');
+
+  if (omniBar) {
+    const syncOmniBarHeight = () => {
+      document.documentElement.style.setProperty('--nexus-omni-height', `${omniBar.getBoundingClientRect().height}px`);
+    };
+    const omniBarResizeObserver = new ResizeObserver(syncOmniBarHeight);
+    syncOmniBarHeight();
+    omniBarResizeObserver.observe(omniBar);
+  }
 
   const activatePage = (nextIndex) => {
     if (!slider) return;
@@ -131,6 +175,49 @@ const fallbackQuote = dailyQuotes[0] ?? '这是测试';
 
       quoteNode.textContent = selectedQuote;
       quoteNode.setAttribute('title', selectedQuote);
+      const quoteLength = Array.from(selectedQuote).length;
+      quoteNode.classList.remove('quote-length-medium', 'quote-length-long');
+
+      if (quoteLength > 48) {
+        quoteNode.classList.add('quote-length-long');
+      } else if (quoteLength > 28) {
+        quoteNode.classList.add('quote-length-medium');
+      }
+    }
+  }
+
+  const vocabularySourceNode = document.getElementById('nexus-vocabulary');
+  const vocabularyWordNode = document.querySelector('[data-vocabulary-word]');
+  const vocabularyPosNode = document.querySelector('[data-vocabulary-pos]');
+  const vocabularyMeaningNode = document.querySelector('[data-vocabulary-meaning]');
+
+  if (vocabularySourceNode && vocabularyWordNode && vocabularyPosNode && vocabularyMeaningNode) {
+    const entries = JSON.parse(vocabularySourceNode.textContent || '[]');
+
+    if (entries.length > 0) {
+      const storageKey = 'nexus-last-vocabulary';
+      let lastVocabulary = '';
+
+      try {
+        lastVocabulary = window.sessionStorage.getItem(storageKey) || '';
+      } catch {
+        lastVocabulary = '';
+      }
+
+      const candidates =
+        entries.length > 1 ? entries.filter((entry) => `${entry.word}|${entry.partOfSpeech}` !== lastVocabulary) : entries;
+      const selectedEntry = candidates[Math.floor(Math.random() * candidates.length)];
+      const selectedKey = `${selectedEntry.word}|${selectedEntry.partOfSpeech}`;
+
+      vocabularyWordNode.textContent = selectedEntry.word;
+      vocabularyPosNode.textContent = selectedEntry.partOfSpeech;
+      vocabularyMeaningNode.textContent = selectedEntry.meaning;
+
+      try {
+        window.sessionStorage.setItem(storageKey, selectedKey);
+      } catch {
+        // Ignore storage failures; random selection still works for this refresh.
+      }
     }
   }
 </script>
@@ -147,31 +234,94 @@ const fallbackQuote = dailyQuotes[0] ?? '这是测试';
   .nexus-daily-quote {
     min-width: 0;
     width: 100%;
-    overflow: hidden;
     color: rgb(207, 250, 254);
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
     font-size: 1.15rem;
     font-weight: 700;
     letter-spacing: 0;
-    line-height: 1.4;
-    text-overflow: ellipsis;
+    line-height: 1.45;
+    overflow-wrap: anywhere;
     text-shadow: 0 0 18px rgba(103, 232, 249, 0.34);
-    white-space: nowrap;
+    white-space: normal;
+    word-break: break-word;
+  }
+
+  .nexus-daily-quote.quote-length-medium {
+    font-size: 1.02rem;
+  }
+
+  .nexus-daily-quote.quote-length-long {
+    font-size: 0.92rem;
   }
 
   .nexus-omni-bar {
     position: sticky;
     top: 1rem;
     z-index: 50;
+    display: grid;
+    grid-template-columns: minmax(0, 3fr) minmax(0, 1fr);
+    align-items: stretch;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .nexus-omni-panel {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    margin-bottom: 1rem;
+    min-width: 0;
+  }
+
+  .nexus-word-panel {
+    min-height: 4.5rem;
+  }
+
+  .nexus-word-content {
+    display: grid;
+    align-content: center;
+    width: 100%;
+    min-width: 0;
+    gap: 0.4rem;
+  }
+
+  .nexus-word-heading {
+    display: flex;
+    align-items: baseline;
+    min-width: 0;
+    gap: 0.55rem;
+  }
+
+  .nexus-word {
+    min-width: 0;
+    color: rgb(255, 255, 255);
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+    font-size: 1.25rem;
+    font-weight: 800;
+    letter-spacing: 0;
+    line-height: 1.2;
+    overflow-wrap: anywhere;
+  }
+
+  .nexus-word-pos {
+    flex: none;
+    color: rgb(103, 232, 249);
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+    font-size: 0.82rem;
+    font-style: italic;
+    font-weight: 700;
+  }
+
+  .nexus-word-meaning {
+    margin: 0;
+    color: rgb(226, 232, 240);
+    font-size: 0.88rem;
+    letter-spacing: 0;
+    line-height: 1.35;
+    overflow-wrap: anywhere;
   }
 
   .nexus-subnav {
     position: sticky;
-    top: 6.25rem;
+    top: calc(var(--nexus-omni-height, 4.5rem) + 2rem);
     z-index: 45;
     display: flex;
     flex-wrap: wrap;
@@ -262,10 +412,19 @@ const fallbackQuote = dailyQuotes[0] ?? '这是测试';
   @media (max-width: 560px) {
     .nexus-omni-bar {
       position: static;
+      grid-template-columns: minmax(0, 1fr);
     }
 
     .nexus-daily-quote {
       font-size: 0.98rem;
+    }
+
+    .nexus-daily-quote.quote-length-medium {
+      font-size: 0.9rem;
+    }
+
+    .nexus-daily-quote.quote-length-long {
+      font-size: 0.82rem;
     }
 
     .nexus-tab {
