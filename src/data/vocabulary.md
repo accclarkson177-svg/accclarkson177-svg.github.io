@@ -13,3 +13,5 @@
 13. temporary|adj.|临时的，暂时的
 14. unassailable|adj.|无懈可击的，不容置疑的
 15. replicate|v.|复制，复现
+16. mapping|n.|映射
+17. manifest|v.|显化
