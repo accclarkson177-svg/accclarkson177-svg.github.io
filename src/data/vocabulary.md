@@ -34,3 +34,25 @@
 34. swell|v.|膨胀，肿胀；增加
 35. menopausal|adj.|更年期的
 36. encompass|v.|包含，涵盖
+37. summon|v.|鼓起（勇气）
+38. superficial|adj.|表面的，肤浅的
+39. repulsive|adj.|令人厌恶的
+40. undermine|v.|暗中破坏，削弱
+41. diminish|v.|减少，削弱
+42. impair|v.|损害，削弱
+43. erode|v.|逐渐削弱，侵蚀
+44. cripple|v.|严重削弱，使瘫痪
+45. dilute|v.|稀释，削弱
+46. debilitated|adj.|虚弱的，衰弱的
+47. forgo|v.|放弃，摒弃
+48. abnegate|v.|放弃，克制
+49. forsake|v.|抛弃，背弃
+50. jettison|v.|抛弃，丢弃
+51. unflagging|adj.|不懈的，持久的
+52. induce|v.|引起，促使
+53. overhear|v.|无意中听到
+54. rage against|phr.v.|猛烈反抗，痛斥
+55. decent|adj.|体面的，像样的
+56. elective|adj.|选修的；n.|选修课
+57. hunch|n.|直觉，预感
+58. obnoxious|adj.|讨厌的，令人反感的
