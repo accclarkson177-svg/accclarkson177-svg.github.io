@@ -56,3 +56,14 @@
 56. elective|adj.|选修的；n.|选修课
 57. hunch|n.|直觉，预感
 58. obnoxious|adj.|讨厌的，令人反感的
+59. reckless|adj.|鲁莽的，不计后果的
+60. spontaneous|adj.|自发的，自然而然的
+61. tap|v.|搭讪、追求(恋爱对象)
+62. menial|adj.|卑微的，枯燥的
+63. wreck|v.|毁坏；n.|残骸
+64. grieve|v.|悲伤，哀悼
+65. trauma|n.|创伤，心理创伤
+66. ritual|n.|仪式，惯例
+67. facilitate|v.|促进，使便利
+68. condescension|n.|屈尊，居高临下的态度
+69. subserve|v.|促进，为……服务
