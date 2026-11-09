@@ -94,6 +94,7 @@ export const tempd: NexusPage = {
               layout: 'grid',
               columns: 2,
               items: [
+                { label: '影视飓风', href: 'https://www.ysjf.com/index' },
                 { label: '生图工具', href: 'http://lowentro.cn/paint/' },
                 { label: '图像资源库', href: 'https://pngimg.com/' },
                 { label: '壁纸库', href: 'https://haowallpaper.com/' },

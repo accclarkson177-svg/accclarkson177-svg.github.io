@@ -72,7 +72,7 @@ export const tempb: NexusPage = {
               layout: 'grid',
               columns: 4,
               items: [
-                { label: 'Gemini插件', href: 'https://voyager.nagi.fun/' },
+                { label: 'VOYAGER', href: 'https://voyager.nagi.fun/' },
               ],
             },
           ],

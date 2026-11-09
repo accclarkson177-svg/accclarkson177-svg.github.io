@@ -67,3 +67,9 @@
 67. facilitate|v.|促进，使便利
 68. condescension|n.|屈尊，居高临下的态度
 69. subserve|v.|促进，为……服务
+70. forfeit |v.|丧失，失去
+71. relinquish|v.|放弃，交出
+72. trophy|n.|奖杯，战利品
+73. accolade|n.|荣誉，赞扬
+74. forecast|v.|预测，预报
+75. prognosis|n.|预后，预测

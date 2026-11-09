@@ -71,7 +71,8 @@ export const tempa: NexusPage = {
                 { label: 'Magazine lib', href: 'https://magazinelib.com/' },
                 { label: '提问的智慧', href: 'https://www.luogu.com.cn/article/fraraxmh' },
                 { label: 'Cokecloud', href: 'https://47.238.225.31:1000/#/stage/dashboard' },
-                { label: '聚名网', href: 'https://www.juming.com/' }
+                { label: '聚名网', href: 'https://www.juming.com/' },
+                { label: '书籍库', href: 'https://book.saltyleo.com/' }
               ],
             },
           ],
@@ -111,6 +112,23 @@ export const tempa: NexusPage = {
               type: 'note',
               title: '收藏夹清理协议',
               body: '每周日 21:00 执行，不得违约。',
+            },
+          ],
+        },
+        {
+          title: 'Music',
+          accent: '#0ef04a',
+          sections: [
+            {
+              type: 'links',
+              layout: 'grid',
+              columns: 2,
+              items: [
+                { label: 'Strad', href: 'https://www.thestrad.com/' },
+                { label: 'Augustin', href: 'https://augustinhadelich.com/en' },
+                { label: 'GUITAR', href: 'https://guistudy.com/tabs' },
+                { label: 'MUSICLAB', href: 'https://www.npac-nso.org/musiclab' },
+              ],
             },
           ],
         },

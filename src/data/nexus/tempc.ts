@@ -20,7 +20,7 @@ export const tempc: NexusPage = {
                 { label: '中国日报', href: 'https://www.chinadaily.com.cn/' },
                 { label: '英协英语学习', href: 'https://learnenglish.britishcouncil.org/' },
                 { label: '美国文学库', href: 'https://americanliterature.com/' },
-                { label: 'Dictionary.com', href: 'https://www.dictionary.com/browse/dictionary' },
+                { label: 'Dictionary', href: 'https://www.dictionary.com/browse/dictionary' },
                 { label: 'Lingohut', href: 'https://www.lingohut.com/zh' },
               ],
             },
@@ -51,6 +51,28 @@ export const tempc: NexusPage = {
       width: 'center',
       cards: [
         {
+          title: 'Forum & Community',
+          accent: '#79f7f9',
+          size: 'wide',
+          sections: [
+            {
+              type: 'links',
+              layout: 'wrap',
+              columns: 4,
+              items: [
+                { label: 'linuxdo', href: 'https://linux.do/' },
+                { label: 'linuxsb', href: 'https://linux.sb/' },
+                { label: 'shit', href: 'https://shitjournal.org/' },
+                { label: 'reddit', href: 'https://www.reddit.com/' },
+                { label: 'v2ex', href: 'https://www.v2ex.com/' },
+                { label: '知乎', href: 'https://www.zhihu.com/' },
+                { label: 'LOFTER', href: 'https://www.lofter.com/' },
+
+              ],
+            },
+          ],
+        },
+        {
           title: 'Brainer',
           accent: '#e879f9',
           size: 'wide',
@@ -75,6 +97,20 @@ export const tempc: NexusPage = {
     {
       width: 'narrow',
       cards: [
+        {
+          title: 'Science & Tech',
+          accent: '#1114ca',
+          sections: [
+            {
+              type: 'links',
+              layout: 'grid',
+              columns: 2,
+              items: [
+                { label: 'Nature', href: 'https://www.nature.com/' },
+              ],
+            },
+          ],
+        },
         {
           title: 'encyclopedia',
           accent: '#fb923c',
