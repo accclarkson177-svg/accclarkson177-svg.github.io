@@ -56,7 +56,10 @@
 56. 所有未来和你有关的人和事，都在等你度过这一关。
 57. 生命给了我多少积雪，我就会遇到多少个春天。
 58. 要爱远山的褶皱胜过生命的淤青。
-
+59. Education is what remains after one has forgotten what one has learned in school.
+60. 尽早拥抱AI，使用工程化思维解决生活琐事
+61. AI作为合作伙伴，不能盲目崇拜。
+62. 多让AI自己去干活，做personal DRI.
 
 
 

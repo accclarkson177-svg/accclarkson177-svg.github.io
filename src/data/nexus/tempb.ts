@@ -91,7 +91,7 @@ export const tempb: NexusPage = {
               layout: 'grid',
               columns: 2,
               items: [
-                { label: 'XcodeAPI', href: 'https://xcode.best/' },
+                { label: 'XcodeAPI', href: 'https://xcodebest.com/' },
                 { label: 'AI订阅FAQ', href: 'https://aixiaobo.cn/' },
                 { label: 'Claude', href: 'https://claude.ai/' },
                 { label: 'Dsapi', href: 'https://platform.deepseek.com/api_keys' },
